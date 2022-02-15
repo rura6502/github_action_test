@@ -8,8 +8,6 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -24,8 +22,17 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '11'
-        distribution: 'temurin'
-    - name: Build with Gradle
+        distribution: 'adopt'
+    - name: ./gradlew test
       uses: gradle/gradle-build-action@937999e9cc2425eddc7fd62d1053baf041147db7
       with:
-        arguments: build
+        arguments: test
+    - name: ./gradlew checkstyleMain
+      with:
+        arguments: checkstyleMain
+    - name: ./gradlew checkstyleTest
+      with:
+        arguments: checkstyleTest
+    - name: ./gradlew build -x test
+      with:
+        arguments: build -x test
