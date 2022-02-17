@@ -30,12 +30,10 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-
 }
 
-
 checkstyle {
-	maxWarnings = 0
+	maxWarnings = 999999
 	configFile = file("${rootDir}/checkstyle-rules.xml")
 	toolVersion = "8.40"
 }

@@ -43,5 +43,5 @@ jobs:
         with:
           checkstyle_config: google_checks.xml
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: 'github-pr-check'
-          tool_name: 'testtool'
+          reporter: 'checkstyle'
+          tool_name: 'checkstyle reviewdog'
