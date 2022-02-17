@@ -35,7 +35,7 @@ tasks.named('test') {
 
 
 checkstyle {
-	maxWarnings = 100
+	maxWarnings = 0
 	configFile = file("${rootDir}/checkstyle-rules.xml")
 	toolVersion = "8.24"
 }
