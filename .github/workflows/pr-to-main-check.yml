@@ -1,5 +1,9 @@
 name: Check Pull Request
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
 jobs:
   test:
     runs-on: ubuntu-18.04
@@ -45,3 +49,35 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: 'github-pr-check'
           tool_name: 'checkstyle reviewdog'
+  coverage:
+    if: contains(github.event.issue.labels.*.name, 'bot/print coverage')
+    name: Rerpot Coverage
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Check for Command
+        uses: xt0rted/slash-command-action@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          command: coverage
+          permission-level: none
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
+      - name: Measuring Code Coverage
+        run: |
+          chmod +x ./gradlew
+          ./gradlew clean jacocoTestReport
+      - name: Add coverage to PR
+        id: jacoco
+        uses: madrapps/jacoco-report@v1.2
+        with:
+          paths: ${{ github.workspace }}/build/reports/code_coverage/report.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-coverage-overall: 0
+          min-coverage-changed-files: 0
