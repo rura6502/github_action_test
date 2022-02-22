@@ -13,6 +13,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           command: coverage
+          permission-level: none
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set up JDK 11
