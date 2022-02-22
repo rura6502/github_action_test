@@ -51,7 +51,7 @@ jobs:
           tool_name: 'checkstyle reviewdog'
   coverage:
     if: ${{ github.event.issue.pull_request }} |
-      && contains(github.event.issue.labels.*.name, 'bot/print coverage')
+      && ${{ contains(github.event.issue.labels.*.name, 'bot/print coverage') }}
     name: Rerpot Coverage
     runs-on: ubuntu-18.04
     steps:
