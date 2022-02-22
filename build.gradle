@@ -49,8 +49,8 @@ jacocoTestReport {
 		xml.enabled true
 		csv.enabled false
 
-		html.destination file("$buildDir/report/code_coverage/html")
-		xml.destination file("$buildDir/report/code_coverage/report.xml")
+		html.destination file("$buildDir/reports/code_coverage/html")
+		xml.destination file("$buildDir/reports/code_coverage/report.xml")
 	}
 }
 
