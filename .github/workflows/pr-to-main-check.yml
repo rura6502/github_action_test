@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Check for Command
-        run: echo ${{ github.event.issue.labels[0].name }}
+        run: echo ${{ github.event }}
 
 #name: Check Pull Request
 #on: pull_request
