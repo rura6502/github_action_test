@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Check for Command
-        run: for ELEMENT in ${{ github.event.issue.labels.*.name }} do echo $ELEMENT\n done && echo ${{ contains(github.event.issue.labels.*.name, 'bot/print coverage')}}
+        run: for ELEMENT in ${{ github.event.issue.labels.*.name }} do echo $ELEMENT\n done
 
 #name: Check Pull Request
 #on: pull_request
